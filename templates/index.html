@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annotations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="content">
+        <H1>Write your tasks</H1>
+
+        <section>
+            <a href="{{ url_for('tasks') }}" class="boton">See your tasks</a>
+        </section>
+
+        <form method="POST">
+            <label for="datetask">Date:</label>
+            <input type="date" id="datetask" name="datetask" required>
+            <br>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <br>
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description" required>
+            <br>
+            <label for="name">Priority:</label>
+            <select id="priority" name="priority" required>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+            <br>
+            <input class="btn-submit" type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>

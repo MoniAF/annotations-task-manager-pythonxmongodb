@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="content-tasks">
+        <h1>Your Tasks</h1>
+
+        <section>
+            <a href="{{ url_for('index') }}" class="boton">Add new task</a>
+        </section>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Priority</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dato in datos %}
+                <tr>
+                    <td>{{ dato['datetask'] }}</td>
+                    <td>{{ dato['name'] }}</td>
+                    <td>{{ dato['description'] }}</td>
+                    <td class="{% if dato['priority'] == 'High' %}high-priority{% elif dato['priority'] == 'Medium' %}medium-priority{% elif dato['priority'] == 'Low' %}low-priority{% endif %}">
+                        {{ dato['priority'] }}
+                    </td>
+                    <td>
+                        <a href="{{ url_for('show_update_form', id=dato._id) }}">Update</a>
+
+                        <form action="{{ url_for('delete_tasks', id=dato._id) }}" method="POST" style="display:inline;">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
